@@ -86,6 +86,32 @@ var game = {
         
             image.src = src;
         }
+    },
+
+    arrow: function(x1, y1, x2, y2, lineWidth = 2, color = "#000000", headLength = 10) {
+        const ctx = game.ctx;
+    
+        // Calcul de la direction
+        const dx = x2 - x1;
+        const dy = y2 - y1;
+        const angle = Math.atan2(dy, dx);
+    
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.strokeStyle = color;
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+    
+        // Tête de flèche
+        ctx.beginPath();
+        ctx.moveTo(x2, y2);
+        ctx.lineTo(x2 - headLength * Math.cos(angle - Math.PI / 6), y2 - headLength * Math.sin(angle - Math.PI / 6));
+        ctx.lineTo(x2 - headLength * Math.cos(angle + Math.PI / 6), y2 - headLength * Math.sin(angle + Math.PI / 6));
+        ctx.lineTo(x2, y2);
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.closePath();
     }
 };
 
@@ -97,5 +123,5 @@ game.create.img('assets/char/Fox_Avatar_Circle.png', 400, 241.25, 75, 90)
 game.create.img('assets/char/Mouse_Avatar_Circle.png', 500, 241.25, 75, 90)
 game.create.img('assets/char/Pig_Avatar_Circle.png', 600, 241.25, 75, 90)
 game.create.img('assets/char/Rabbit_Avatar_Circle.png', 700, 241.25, 75, 90)
-game.create.triangle(210, 210, 250, 230, 210, 290, "blue")
-game.create.rect(230, 150, 40, 60, "blue")
+game.create.arrow(250, 200, 250, 230, 5, "blue")
+game.create.arrow(350, 340, 350, 340, 5, "red")

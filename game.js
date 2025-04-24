@@ -70,6 +70,21 @@ var game = {
             ctx.closePath();
             ctx.fillStyle = fill;
             ctx.fill();
+        },
+
+        img: function(src, x = 0, y = 0, width = null, height = null) {
+            const ctx = game.ctx;
+            const image = new Image();
+        
+            image.onload = function() {
+                if (width && height) {
+                    ctx.drawImage(image, x, y, width, height);
+                } else {
+                    ctx.drawImage(image, x, y);
+                }
+            };
+        
+            image.src = src;
         }
     }
 };
@@ -77,3 +92,9 @@ var game = {
 console.log("caca")
 game.setup();
 game.create.rect(100, 100, 20, 20, "#00ff00")
+game.create.img('assets/char/Cat_Avatar_Circle.png', 200, 230)
+game.create.img('assets/char/Chick_Avatar_Circle.png', 300, 230)
+game.create.img('assets/char/Fox_Avatar_Circle.png', 400, 230)
+game.create.img('assets/char/Mouse_Avatar_Circle.png', 500, 230)
+game.create.img('assets/char/Pig_Avatar_Circle.png', 600, 230)
+game.create.img('assets/char/Rabbit_Avatar_Circle.png', 700, 230)

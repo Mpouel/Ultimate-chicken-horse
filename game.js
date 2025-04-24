@@ -1,4 +1,4 @@
-var gamea = {
+var game = {
     canvas: null,
     ctx: null,
 
@@ -10,8 +10,8 @@ var gamea = {
     },
 
     create: {
-        ctx: gamea.ctx,
-        rec: function(x, y, width, height, fill = "#ff0000") {
+        rect: function(x, y, width, height, fill = "#ff0000") {
+            const ctx = game.ctx;
             ctx.beginPath();
             ctx.rect(x, y, width, height);
             ctx.fillStyle = fill;
@@ -20,6 +20,7 @@ var gamea = {
         },
 
         circle: function(x, y, radius, fill = "#ff0000") {
+            const ctx = game.ctx;
             ctx.beginPath();
             ctx.arc(x, y, radius, 0, Math.PI * 2, false);
             ctx.fillStyle = fill;
@@ -28,6 +29,7 @@ var gamea = {
         },
 
         line: function(x1, y1, x2, y2, width = 1, color = "#ff0000") {
+            const ctx = game.ctx;
             ctx.beginPath();
             ctx.moveTo(x1, y1);
             ctx.lineTo(x2, y2);
@@ -38,6 +40,7 @@ var gamea = {
         },
 
         triangle: function(x1, y1, x2, y2, x3, y3, fill = "#ff0000") {
+            const ctx = game.ctx;
             ctx.beginPath();
             ctx.moveTo(x1, y1);
             ctx.lineTo(x2, y2);
@@ -48,6 +51,7 @@ var gamea = {
         },
 
         ellipse: function(x, y, radiusX, radiusY, rotation = 0, fill = "#0000ff") {
+            const ctx = game.ctx;
             ctx.beginPath();
             ctx.ellipse(x, y, radiusX, radiusY, rotation, 0, Math.PI * 2);
             ctx.fillStyle = fill;
@@ -56,6 +60,7 @@ var gamea = {
         },
 
         polygon: function(points = [], fill = "#ff00ff") {
+            const ctx = game.ctx;
             if (points.length < 3) return;
             ctx.beginPath();
             ctx.moveTo(points[0][0], points[0][1]);
@@ -68,6 +73,7 @@ var gamea = {
         }
     }
 };
+
 console.log("caca")
-gamea.setup();
-gamea.create.rec(100, 100, 20, 20)
+game.setup();
+game.create.rect(100, 100, 20, 20)

@@ -76,4 +76,4 @@ var game = {
 
 console.log("caca")
 game.setup();
-game.create.rect(100, 100, 20, 20)
+game.create.rect(100, 100, 20, 20, "#00ff00")

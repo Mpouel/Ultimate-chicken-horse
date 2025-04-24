@@ -86,7 +86,7 @@ var game = {
         
             image.src = src;
         },
-        
+
         arrow: function(x1, y1, x2, y2, lineWidth = 2, color = "#000000", headLength = 10) {
             const ctx = game.ctx;
         
@@ -97,7 +97,7 @@ var game = {
         
             ctx.beginPath();
             ctx.moveTo(x1, y1);
-            ctx.lineTo(x2, y2);
+            ctx.lineTo(x2, y2-headLength);
             ctx.strokeStyle = color;
             ctx.lineWidth = lineWidth;
             ctx.stroke();

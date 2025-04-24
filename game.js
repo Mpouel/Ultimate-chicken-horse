@@ -68,6 +68,6 @@ var gamea = {
         }
     }
 };
-
+console.log("caca")
 gamea.setup();
 gamea.create.rec(100, 100, 20, 20)

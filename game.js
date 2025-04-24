@@ -7,6 +7,7 @@ var game = {
         this.ctx = this.canvas.getContext("2d");
         this.canvas.width = 1000;
         this.canvas.height = 562.5;
+        this.
     },
 
     create: {

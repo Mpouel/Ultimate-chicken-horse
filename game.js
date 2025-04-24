@@ -85,33 +85,33 @@ var game = {
             };
         
             image.src = src;
+        },
+        
+        arrow: function(x1, y1, x2, y2, lineWidth = 2, color = "#000000", headLength = 10) {
+            const ctx = game.ctx;
+        
+            // Calcul de la direction
+            const dx = x2 - x1;
+            const dy = y2 - y1;
+            const angle = Math.atan2(dy, dx);
+        
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.strokeStyle = color;
+            ctx.lineWidth = lineWidth;
+            ctx.stroke();
+        
+            // Tête de flèche
+            ctx.beginPath();
+            ctx.moveTo(x2, y2);
+            ctx.lineTo(x2 - headLength * Math.cos(angle - Math.PI / 6), y2 - headLength * Math.sin(angle - Math.PI / 6));
+            ctx.lineTo(x2 - headLength * Math.cos(angle + Math.PI / 6), y2 - headLength * Math.sin(angle + Math.PI / 6));
+            ctx.lineTo(x2, y2);
+            ctx.fillStyle = color;
+            ctx.fill();
+            ctx.closePath();
         }
-    },
-
-    arrow: function(x1, y1, x2, y2, lineWidth = 2, color = "#000000", headLength = 10) {
-        const ctx = game.ctx;
-    
-        // Calcul de la direction
-        const dx = x2 - x1;
-        const dy = y2 - y1;
-        const angle = Math.atan2(dy, dx);
-    
-        ctx.beginPath();
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.strokeStyle = color;
-        ctx.lineWidth = lineWidth;
-        ctx.stroke();
-    
-        // Tête de flèche
-        ctx.beginPath();
-        ctx.moveTo(x2, y2);
-        ctx.lineTo(x2 - headLength * Math.cos(angle - Math.PI / 6), y2 - headLength * Math.sin(angle - Math.PI / 6));
-        ctx.lineTo(x2 - headLength * Math.cos(angle + Math.PI / 6), y2 - headLength * Math.sin(angle + Math.PI / 6));
-        ctx.lineTo(x2, y2);
-        ctx.fillStyle = color;
-        ctx.fill();
-        ctx.closePath();
     }
 };
 

@@ -1,4 +1,4 @@
-var game = {
+var gamea = {
     canvas: null,
     ctx: null,
 
@@ -10,8 +10,8 @@ var game = {
     },
 
     create: {
-        ctx: game.ctx,
-        rect: function(x, y, width, height, fill = "#ff0000") {
+        ctx: gamea.ctx,
+        rec: function(x, y, width, height, fill = "#ff0000") {
             ctx.beginPath();
             ctx.rect(x, y, width, height);
             ctx.fillStyle = fill;
@@ -68,3 +68,6 @@ var game = {
         }
     }
 };
+
+gamea.setup();
+gamea.create.rec(100, 100, 20, 20)

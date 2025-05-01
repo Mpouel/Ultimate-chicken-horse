@@ -6,24 +6,18 @@ let lastTriggerTime = 0;
 const triggerCooldown = 5000; // milliseconds
 let startTime = new Date().getTime();
 
-
 function onOpenCvReady() {
-    cv['fs'].root().createReader().readEntries(function(entries) {
-        if (entries.indexOf('haarcascade_frontalface_default.xml') === -1) {
-            loadFaceCascade();
-        } else {
-            startWebcam();
-        }
-    });
+    console.log('OpenCV.js is ready');
+    loadFaceCascade();
 }
 
 function loadFaceCascade() {
-    let url = faceCascadeFile;
+    let url = 'https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml';
     fetch(url)
-        .then(response => response.arrayBuffer())
+        .then(response => response.text())
         .then(data => {
-            let uint8Array = new Uint8Array(data);
-            cv['fs'].root().createWriter(faceCascadeFile, uint8Array, true);
+            let faceCascade = new cv.CascadeClassifier();
+            faceCascade.read(data);
             console.log('Face cascade loaded');
             startWebcam();
         })

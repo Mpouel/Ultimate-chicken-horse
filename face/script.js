@@ -11,7 +11,7 @@ function onOpenCvReady() {
         if (entries.indexOf('haarcascade_frontalface_default.xml') === -1) {
             loadFaceCascade();
         } else {
-            startVideo();
+            startWebcam();
         }
     });
 }
@@ -20,13 +20,19 @@ function loadFaceCascade() {
     let utils = new Utils('errorMessage');
     let url = faceCascadeFile;
     utils.createFileFromUrl(url, url, function() {
-        startVideo();
+        startWebcam();
     });
 }
 
-function startVideo() {
-    video.src = 'faces3.mp4'; // Replace with your video file path
-    video.onloadeddata = processVideo;
+function startWebcam() {
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function(stream) {
+            video.srcObject = stream;
+            video.onloadeddata = processVideo;
+        })
+        .catch(function(err) {
+            console.error('Error accessing the webcam: ', err);
+        });
 }
 
 function processVideo() {
@@ -37,6 +43,8 @@ function processVideo() {
     faceCascade.read(faceCascadeFile);
 
     function processFrame() {
+        if (!video.srcObject) return; // Ensure the video stream is active
+
         let begin = Date.now();
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
         let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
@@ -89,4 +97,29 @@ function processVideo() {
     }
 
     setTimeout(processFrame, 0);
+}
+
+// Utility class for loading files (you might need to implement or include this class)
+class Utils {
+    constructor() {
+        this.fileEntry = null;
+    }
+
+    createFileFromUrl(path, url, callback) {
+        let request = new XMLHttpRequest();
+        request.open('GET', url, true);
+        request.responseType = 'arraybuffer';
+        request.onload = (ev) => {
+            if (request.readyState === 4) {
+                if (request.status === 200) {
+                    let data = new Uint8Array(request.response);
+                    cv['fs'].root().createWriter(path, data, true);
+                    callback();
+                } else {
+                    console.error('Failed to load ' + url + ' status: ' + request.status);
+                }
+            }
+        };
+        request.send();
+    }
 }

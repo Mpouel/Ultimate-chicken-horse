@@ -47,7 +47,7 @@ function processVideo() {
 
         let timer = new Date().getTime();
 
-        if (faces.size().height === 2 && (timer - lastTriggerTime > triggerCooldown)) {
+        if (faces.size().width === 2 && (timer - lastTriggerTime > triggerCooldown)) {
             let ntimer = (timer - startTime) / 1000;
             console.log(`Teacher detected at: ${ntimer.toFixed(2)} seconds`);
             lastTriggerTime = timer;
@@ -75,10 +75,11 @@ function processVideo() {
             // Display the screenshot
             let img = new Image();
             img.src = secondFaceCanvas.toDataURL();
-            document.body.appendChild(img);
+            img.classList.add('screenshot');
+            document.getElementById('screenshotContainer').appendChild(img);
         }
 
-        if (faces.size().height === 0) {
+        if (faces.size().width === 0) {
             video.pause();
             return;
         }

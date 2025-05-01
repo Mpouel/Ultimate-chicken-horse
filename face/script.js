@@ -21,7 +21,7 @@ function loadFaceCascade() {
     let utils = new Utils('errorMessage');
     let url = faceCascadeFile;
     utils.createFileFromUrl(url, url, function() {
-        console.log('Face cascade loaded');
+        document.writeln('Face cascade loaded');
         startWebcam();
     });
 }

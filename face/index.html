@@ -8,6 +8,10 @@
     <script async src="https://docs.opencv.org/3.4/opencv.js" onload="onOpenCvReady()"></script>
 </head>
 <body>
+    <div>
+        <label for="cameraSelect">Select Camera:</label>
+        <select id="cameraSelect"></select>
+    </div>
     <video id="video" width="640" height="480" autoplay></video>
     <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
     <div class="screenshot" id="screenshotContainer"></div>

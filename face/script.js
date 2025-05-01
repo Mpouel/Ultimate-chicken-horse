@@ -6,15 +6,15 @@ let lastTriggerTime = 0;
 const triggerCooldown = 5000; // milliseconds
 let startTime = new Date().getTime();
 
-async function onOpenCvReady() {
+function onOpenCvReady() {
     console.log('OpenCV.js is ready');
-    await loadFaceCascade();
-    startWebcam();
+    loadFaceCascade();
+    listCameras();
 }
 
-async function loadFaceCascade() {
+function loadFaceCascade() {
     let url = 'https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml';
-    await fetch(url)
+    fetch(url)
         .then(response => response.text())
         .then(data => {
             let faceCascade = new cv.CascadeClassifier();
@@ -24,8 +24,33 @@ async function loadFaceCascade() {
         .catch(err => console.error('Failed to load face cascade: ', err));
 }
 
-function startWebcam() {
-    navigator.mediaDevices.getUserMedia({ video: true })
+function listCameras() {
+    navigator.mediaDevices.enumerateDevices()
+        .then(devices => {
+            let cameraSelect = document.getElementById('cameraSelect');
+            devices.forEach(device => {
+                if (device.kind === 'videoinput') {
+                    let option = document.createElement('option');
+                    option.value = device.deviceId;
+                    option.text = device.label || `Camera ${cameraSelect.length + 1}`;
+                    cameraSelect.appendChild(option);
+                }
+            });
+            if (cameraSelect.options.length > 0) {
+                cameraSelect.onchange = () => {
+                    startWebcam(cameraSelect.value);
+                };
+                cameraSelect.onchange(); // Start with the first camera
+            }
+        })
+        .catch(err => console.error('Error listing cameras: ', err));
+}
+
+function startWebcam(deviceId) {
+    if (video.srcObject) {
+        video.srcObject.getTracks().forEach(track => track.stop());
+    }
+    navigator.mediaDevices.getUserMedia({ video: { deviceId: deviceId } })
         .then(function(stream) {
             video.srcObject = stream;
             video.onloadeddata = processVideo;

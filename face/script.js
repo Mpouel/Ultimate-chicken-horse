@@ -6,20 +6,20 @@ let lastTriggerTime = 0;
 const triggerCooldown = 5000; // milliseconds
 let startTime = new Date().getTime();
 
-function onOpenCvReady() {
+async function onOpenCvReady() {
     console.log('OpenCV.js is ready');
-    loadFaceCascade();
+    await loadFaceCascade();
+    startWebcam();
 }
 
-function loadFaceCascade() {
+async function loadFaceCascade() {
     let url = 'https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml';
-    fetch(url)
+    await fetch(url)
         .then(response => response.text())
         .then(data => {
             let faceCascade = new cv.CascadeClassifier();
             faceCascade.read(data);
             console.log('Face cascade loaded');
-            startWebcam();
         })
         .catch(err => console.error('Failed to load face cascade: ', err));
 }

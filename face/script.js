@@ -20,6 +20,7 @@ function onOpenCvReady() {
 function loadFaceCascade() {
     let utils = new Utils('errorMessage');
     let url = faceCascadeFile;
+    document.writeln('Face cascade error');
     utils.createFileFromUrl(url, url, function() {
         document.writeln('Face cascade loaded');
         startWebcam();

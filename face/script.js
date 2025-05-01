@@ -7,10 +7,7 @@ const triggerCooldown = 5000; // milliseconds
 let startTime = new Date().getTime();
 
 
-document.writeln("caca")
-
 function onOpenCvReady() {
-    document.writeln('OpenCV.js is ready');
     cv['fs'].root().createReader().readEntries(function(entries) {
         if (entries.indexOf('haarcascade_frontalface_default.xml') === -1) {
             loadFaceCascade();

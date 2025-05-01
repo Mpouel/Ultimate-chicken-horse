@@ -7,6 +7,7 @@ const triggerCooldown = 5000; // milliseconds
 let startTime = new Date().getTime();
 
 function onOpenCvReady() {
+    console.log('OpenCV.js is ready');
     cv['fs'].root().createReader().readEntries(function(entries) {
         if (entries.indexOf('haarcascade_frontalface_default.xml') === -1) {
             loadFaceCascade();
@@ -20,6 +21,7 @@ function loadFaceCascade() {
     let utils = new Utils('errorMessage');
     let url = faceCascadeFile;
     utils.createFileFromUrl(url, url, function() {
+        console.log('Face cascade loaded');
         startWebcam();
     });
 }
@@ -99,7 +101,7 @@ function processVideo() {
     setTimeout(processFrame, 0);
 }
 
-// Utility class for loading files (you might need to implement or include this class)
+// Utility class for loading files
 class Utils {
     constructor() {
         this.fileEntry = null;

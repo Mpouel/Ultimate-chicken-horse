@@ -1,7 +1,7 @@
 let video = document.getElementById('video');
 let canvas = document.getElementById('canvas');
 let context = canvas.getContext('2d');
-let faceCascadeFile = 'https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml';
+let faceCascadeFile = 'haarcascade_frontalface_default.xml';
 let lastTriggerTime = 0;
 const triggerCooldown = 5000; // milliseconds
 let startTime = new Date().getTime();
@@ -9,7 +9,7 @@ let startTime = new Date().getTime();
 
 function onOpenCvReady() {
     cv['fs'].root().createReader().readEntries(function(entries) {
-        if (entries.indexOf(faceCascadeFile) === -1) {
+        if (entries.indexOf('haarcascade_frontalface_default.xml') === -1) {
             loadFaceCascade();
         } else {
             startWebcam();

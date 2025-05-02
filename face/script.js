@@ -82,7 +82,7 @@ function processVideo() {
     if (faces.size() === 2 && now - lastTriggerTime > triggerCooldown) {
       lastTriggerTime = now;
       const t = (now - startTime) / 1000;
-      console.log(`2 faces detected at ${t.toFixed(2)}s`);
+      document.writeln(`2 faces detected at ${t.toFixed(2)}s`);
 
       const rect = faces.get(1);
       const faceImageData = context.getImageData(rect.x, rect.y, rect.width, rect.height);

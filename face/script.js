@@ -22,8 +22,7 @@ waitForOpencv(() => {
 
 function loadFaceCascade() {
   const cascadeFile = 'haarcascade_frontalface_default.xml';
-  const url = 'https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/' + cascadeFile;
-  fetch(url)
+  fetch(cascadeFile)
     .then(res => res.arrayBuffer())
     .then(buffer => {
       cv.FS_createDataFile('/', cascadeFile, new Uint8Array(buffer), true, false, false);
@@ -31,7 +30,7 @@ function loadFaceCascade() {
       if (!faceCascade.load(cascadeFile)) {
         console.error('Failed to load cascade classifier');
       } else {
-        console.log('Face cascade loaded');
+        console.log('Face cascade loaded from local file');
       }
     })
     .catch(err => console.error('Cascade fetch error:', err));

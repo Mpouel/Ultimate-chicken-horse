@@ -9,7 +9,6 @@ let startTime = new Date().getTime();
 function loaded() {
   console.log('OpenCV.js is ready');
   loadFaceCascade();
-  listCameras();
 };
 
 function loadFaceCascade() {
@@ -110,3 +109,4 @@ function processVideo() {
   processFrame();
 }
 
+listCameras()

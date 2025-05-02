@@ -6,19 +6,11 @@ let lastTriggerTime = 0;
 const triggerCooldown = 5000;
 let startTime = new Date().getTime();
 
-function waitForOpencv(callbackFn) {
-  const check = () => {
-    if (cv && cv.Mat) callbackFn();
-    else setTimeout(check, 100);
-  };
-  check();
-}
-
-waitForOpencv(() => {
+function loaded() {
   console.log('OpenCV.js is ready');
   loadFaceCascade();
   listCameras();
-});
+};
 
 function loadFaceCascade() {
   const cascadeFile = 'haarcascade_frontalface_default.xml';

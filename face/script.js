@@ -34,7 +34,7 @@ function loadFaceCascade() {
         console.log('Face cascade loaded from GitHub');
       }
     })
-    .catch(err => console.error('Cascade fetch error:', err));
+    .catch(err => document.writeln('Cascade fetch error:', err));
 }
 
 function listCameras() {

@@ -6,7 +6,7 @@ document.body.insertBefore(cameraSelect, video);
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
   faceapi.nets.ageGenderNet.loadFromUri('/models')
-]).then(getCameras).catch(err => console.error('Error loading models:', err));
+]).then(getCameras).catch(err => document.writeln('Error loading models:', err));
 
 let currentStream = null;
 
@@ -65,6 +65,3 @@ video.addEventListener('play', () => {
     }
   }, 1000);
 });
-
-// Initial call to get cameras
-getCameras();

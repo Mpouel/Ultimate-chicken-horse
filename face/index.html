@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Face Detection</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://docs.opencv.org/4.x/opencv.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Face Age Detection</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div>
-        <label for="cameraSelect">Select Camera:</label>
-        <select id="cameraSelect"></select>
-    </div>
-    <video id="video" width="640" height="480" autoplay muted playsinline></video>
-    <canvas id="canvas" width="640" height="480"></canvas>
-    <script src="script.js"></script>
+  <h1>Face Age Detector</h1>
+  <video id="video" autoplay muted></video>
+  <div id="statusBox"></div>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
+  <script defer src="script.js"></script>
 </body>
 </html>

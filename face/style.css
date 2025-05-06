@@ -1,25 +1,24 @@
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin: 0;
+    padding: 20px;
+    font-family: sans-serif;
     background-color: #111;
-    color: #fff;
-    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
   }
-  
-  #video {
-    width: 640px;
-    height: 480px;
-    border: 2px solid #fff;
-    margin-top: 20px;
+  video {
+    border: 1px solid white;
+    display: block;
+    margin: 0 auto;
   }
-  
-  #statusBox {
+  #box {
     width: 100px;
-    height: 100px;
-    background-color: green;
-    margin-top: 20px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
+    height: 50px;
+    background: green;
+    margin: 20px auto;
+    border-radius: 5px;
   }
-  
+  select {
+    margin-bottom: 20px;
+    padding: 5px;
+  }

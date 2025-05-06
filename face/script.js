@@ -54,3 +54,5 @@ function runDetection() {
     }, 1000);
   });
 }
+
+getCameras()
